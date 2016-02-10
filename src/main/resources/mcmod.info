@@ -1,0 +1,16 @@
+[
+{
+  "modid": "HaggleTweaks",
+  "name": "HaggleTweaks",
+  "description": "",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Haggle1996"],
+  "credits": "JadedTweaks because I needed to start somewhere. :)",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
