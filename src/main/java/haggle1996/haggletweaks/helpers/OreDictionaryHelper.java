@@ -72,7 +72,7 @@ public class OreDictionaryHelper {
         int uranium = OreDictionary.getOreID("oreUraniumHard");
         int silver = OreDictionary.getOreID("oreSilverHard");
         int nickel = OreDictionary.getOreID("oreNickelHard");
-        int bauxite = OreDictionary.getOreID("oreBauxiteHard");
+        int bauxite = OreDictionary.getOreID("oreAluminumHard");
         int diamond = OreDictionary.getOreID("oreDiamondHard");
         
         remove(iron);
@@ -82,6 +82,7 @@ public class OreDictionaryHelper {
         remove(lead);
         remove(uranium);
         remove(silver);
+        remove(nickel);
         remove(bauxite);
         remove(diamond);
 	}
