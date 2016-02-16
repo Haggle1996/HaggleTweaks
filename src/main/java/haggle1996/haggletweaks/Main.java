@@ -9,6 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import haggle1996.haggletweaks.helpers.OreDictionaryHelper;
+import haggle1996.haggletweaks.helpers.FurnaceHelper;
 
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
@@ -30,8 +31,12 @@ public class Main {
 	public void init (FMLInitializationEvent event)
 	{
 		ItemStackHolderInjector.INSTANCE.inject();
-		Main.log.info("HaggleTweaking Started...");
-		OreDictionaryHelper.init();
+		
+        Main.log.info("HaggleTweaking Started...");
+		
+        OreDictionaryHelper.init();
+        FurnaceHelper.init();
+        
         Main.log.info("Finished HaggleTweaking");
 	}
     
