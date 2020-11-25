@@ -5,6 +5,7 @@ import net.minecraft.entity.player.EntityPlayer.EnumStatus;
 import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
@@ -17,6 +18,8 @@ import net.minecraft.world.World;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import haggle1996.haggletweaks.integration.Bloodmoon;
 
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
@@ -34,7 +37,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 public class HaggleTweaks {
     public static final String MODID = "HaggleTweaks";
     public static final String NAME = "HaggleTweaks";
-    public static final String VERSION = "0.3.0.0";
+    public static final String VERSION = "0.4.0.0";
     public static final Logger log = LogManager.getLogger(MODID);
     
  	@Mod.EventHandler
@@ -64,13 +67,22 @@ public class HaggleTweaks {
     @SubscribeEvent(priority = EventPriority.HIGH)
     public void CheckSpawn(LivingSpawnEvent.CheckSpawn event)
     {
+        // spawning rules:
+        // allow spanws anywhere during blood moon and invasion
+        // otherwise
+        // mobs can spawn at light level 0, underground, and 
         if (event.entity instanceof IMob)
         {
             if (event.world.provider.dimensionId == 0)
             {
-                if (!event.world.isRaining())
+                // if bloodmoon is active, don't denying things
+                if (!Bloodmoon.isBloodmoonActive())
                 {
-                    event.setResult(Result.DENY);
+                    int light = event.world.getSavedLightValue(EnumSkyBlock.Sky, MathHelper.floor_float(event.x), MathHelper.floor_float(event.y), MathHelper.floor_float(event.z));
+                    if (light > 0)
+                    {
+                        event.setResult(Result.DENY);
+                    }
                 }
             }
         }
